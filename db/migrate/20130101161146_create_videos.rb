@@ -8,6 +8,7 @@ class CreateVideos < ActiveRecord::Migration
       t.integer :portal_id
       t.integer :source
       t.integer :views
+      t.integer :heart_count
       t.timestamps
     end
   end

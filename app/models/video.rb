@@ -6,4 +6,5 @@ class Video < ActiveRecord::Base
   validates :user_id, presence: true
   validates :portal_id, presence: true
 
+  has_many :comments, :as => :commentable
 end
