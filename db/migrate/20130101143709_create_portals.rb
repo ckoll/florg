@@ -5,15 +5,16 @@ class CreatePortals < ActiveRecord::Migration
       t.datetime :datefounded
       t.string :title
       t.string :header
-      t.integer :user_count, :default => 0
+      t.integer :users_count, :default => 0
       t.timestamps
     end
     
-    add_index "portals", ["title"], :name => "index_portals_on_title", :unique => true
+    #2do
+    #add_index "portals", ["title"], :name => "index_portals_on_title", :unique => true
     
-    #update user_count
+    #update users_count
     Portal.find(:all).each do |p|
-      Portal.update_counters p.id, :tasks_count => p.users.length
+      Portal.update_counters p.id, :users_count => p.users.length
     end
     
     

@@ -9,7 +9,7 @@ class CreatePhotos < ActiveRecord::Migration
       t.integer :portal_id
       t.integer :source
       t.integer :views
-      t.integer :heart_count
+      t.integer :hearts_count
       t.timestamps
     end
   end

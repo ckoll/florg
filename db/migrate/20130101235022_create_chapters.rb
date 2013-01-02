@@ -7,7 +7,7 @@ class CreateChapters < ActiveRecord::Migration
       t.integer :chapternum
       t.string :body
       t.string :title
-      t.string :heart_count
+      t.string :hearts_count
       t.timestamps
     end
   end

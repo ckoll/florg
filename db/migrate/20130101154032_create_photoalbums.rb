@@ -5,7 +5,7 @@ class CreatePhotoalbums < ActiveRecord::Migration
     t.string :createdby
     t.string :title
     t.string :slug
-    t.description :string
+    t.string :description
     t.integer :photos_count
     t.integer :order
     t.timestamps

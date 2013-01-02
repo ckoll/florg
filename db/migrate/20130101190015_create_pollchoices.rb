@@ -5,13 +5,13 @@ class CreatePollchoices < ActiveRecord::Migration
       t.string :choice
       t.integer :order
       t.string :image
-      t.integer :vote_count, :default => 0
+      t.integer :pollanswers_count, :default => 0
       t.timestamps
     end
     
     #update user_count
     Pollchoice.find(:all).each do |p|
-      Pollchoice.update_counters p.id, :vote_count => p.pollanswers.length
+      Pollchoice.update_counters p.id, :pollanswers_count => p.pollanswers.length
     end
     
   end
