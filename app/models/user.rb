@@ -1,8 +1,32 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                  :integer          not null, primary key
+#  username            :string(255)
+#  pass                :string(255)
+#  password_digest     :string(255)
+#  remember_token      :string(255)
+#  email               :string(255)
+#  confirmed           :boolean          default(FALSE)
+#  lastvisit           :datetime
+#  profilepic          :string(255)
+#  profile             :string(255)
+#  photos_count        :integer
+#  videos_count        :integer
+#  pages_count         :integer
+#  comments_count      :integer
+#  pollanswers_count   :integer
+#  pollquestions_count :integer
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#
+
 class User < ActiveRecord::Base
   # attr_accessible :title, :body
   has_many :fanportalrelationships, :dependent => :destroy #?  #destroy relationships when user is destroyed
-  has_many :portals, through: :fanportalrelationships, source: :portal, 
-            :counter_cache => true #portals can be anyname, e.g., myportals
+  has_many :portals, through: :fanportalrelationships, source: :portal
+  #          :counter_cache => true #portals can be anyname, e.g., myportals
   has_many :photos
   has_many :videos
   

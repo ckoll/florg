@@ -1,0 +1,93 @@
+<% if signed_in? %>
+<div class="row">
+	<aside class="span4">
+		<section>
+			You are signed in
+		</section>
+		<section>
+
+		</section>
+		<section>
+
+		</section>
+	</aside>
+</div> 
+
+<div class="span8">
+	<h3>latest updates</h3>
+
+</div> 
+
+<% else %>
+
+<div class="pull-right">
+<%= link_to image_tag("facebook.png", alt: "Fanlink Facebook",width:"20",height:"20"), "http://facebook.com/fanlinkorg" %>
+<%= link_to image_tag("twitter.png", alt: "Fanlink Twitter",width:"20",height:"20"), "http://twitter.com/fanlinkorg" %>
+<%= link_to image_tag("email.png", alt: "Fanlink Email",width:"20",height:"20"), "mailto:fanlinkorg[at]gmail.com" %>
+</div>
+
+<div class="center hero-unit">
+	<h1>Fanlink.org Fanportals</h1>
+
+	<h2>
+		Create your own fan community and watch it grow!
+	</h2>
+
+	<%= link_to "Sign up now!", signup_path,
+	class: "btn btn-large btn-primary" %>
+
+</div>
+
+<div class="center">
+<ul class="nav nav-pills">
+	<li><%= link_to "Home", "#" %></li>
+	<li><%= link_to "The Communities", "#" %></li>
+	<li><%= link_to "FAQ", "#" %></li>
+	<li><%= link_to "Contact", "#" %></li>
+</ul>
+</div>
+
+
+<div>
+<aside class="span4">
+	<ul class="nav nav-list">
+		<li class="nav-header">Directory</li>
+		<li><a href="/directory/movies">Movies (15)</a></li>
+		<li><a href="/directory/tv-shows">TV Shows (20)</a></li>
+		<li><a href="/directory/celebrities">Celebrities (50)</a></li>
+		<li><a href="/directory/fanfics">Fanfics (5)</a></li>
+		<li><a href="/directory/art">Art (5)</a></li>
+		<li><a href="/directory/for-fun">For Fun (5)</a></li>
+		<li class="nav-header">Or</li>
+		<li><a href="#">Start your own!</a></li>
+	</ul>
+</aside>
+</div>
+
+<div>
+	<h3>Featured Portals</h3>
+	
+	<div class = "center">
+		<% if @homeportals.any? %>
+			<% @homeportals.each do |p| %>
+			<!-- %= render :partial => 'homeportals', :locals => {:p => p} % -->
+			<%= link_to image_tag(p[:slug] << ".png", alt: p[:title]) , p[:slug] %>
+			<% end %>
+		<% end %>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+<% end %>
+
+
+
+
+
+
