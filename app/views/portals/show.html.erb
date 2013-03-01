@@ -1,0 +1,89 @@
+<title><%= @portal.title %></title>
+
+
+        <div class="page-header center">
+			<h1><%= @portal.title %></h1>
+
+			<% if @portal[:header].blank? %>
+				<%= link_to image_tag("defaultheader.png", alt: @portal[:title]), @portal[:slug] %>
+			<% else %>
+				<%= link_to image_tag(@portal[:header], alt: @portal[:title]), @portal[:slug] %>
+			<% end %>
+        </div>
+
+
+
+
+
+<div class="row">
+	<div class="span4">
+
+<% if signed_in? %>
+
+<div id="like">
+	<%= render 'likes/like_button', :portal => @portal %>
+</div>
+
+<% else %>
+<button class="btn">Become a fan</button>
+<!-- go to signup and track this page -->
+<% end %>
+
+
+		<div>
+			<h2>Fans</h2>
+			View all
+		</div>
+
+		<div>
+				<h2>Stats</h2>
+			<ul>
+			<li>Name:  <%= @portal.title %> </li>
+			<li>Moderators: </li>
+			<li>Total Fans: <%= @portal.users_count %> </li>
+
+			<% @date = @portal.created_at %></li>
+			<li>Created:  <%= @date.strftime("%B #{@date.day.ordinalize}, %Y") %></li>
+			</ul>
+		</div>
+
+		<div>
+			<h2>Latest Videos</h2>
+		</div>
+
+
+		<div>
+			<h2>Pages</h2>
+		</div>
+
+
+		<div>
+			<h2>Q&A</h2>
+		</div>
+
+	</div>
+
+
+
+	<div class="span8">
+
+		<h3>Latest Photos</h3>
+
+
+		<h3>Latest News</h3>
+
+
+		<h3>Wall</h3>
+		
+
+			
+
+
+
+	</div>
+
+
+
+</div>
+
+

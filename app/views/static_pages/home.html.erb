@@ -15,7 +15,6 @@
 
 <div class="span8">
 	<h3>latest updates</h3>
-
 </div> 
 
 <% else %>
@@ -30,7 +29,7 @@
 	<h1>Fanlink.org Fanportals</h1>
 
 	<h2>
-		Create your own fan community and watch it grow!
+		Join your favorite fan communities
 	</h2>
 
 	<%= link_to "Sign up now!", signup_path,
@@ -71,7 +70,7 @@
 		<% if @homeportals.any? %>
 			<% @homeportals.each do |p| %>
 			<!-- %= render :partial => 'homeportals', :locals => {:p => p} % -->
-			<%= link_to image_tag(p[:slug] << ".png", alt: p[:title]) , p[:slug] %>
+			<%= link_to image_tag(p[:slug] + ".png", alt: p[:title]), p[:slug] %>
 			<% end %>
 		<% end %>
 	</div>

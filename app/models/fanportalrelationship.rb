@@ -12,6 +12,7 @@
 
 class Fanportalrelationship < ActiveRecord::Base
   # attr_accessible :title, :body
+  attr_accessible :portal_id
 
   belongs_to :user
   belongs_to :portal

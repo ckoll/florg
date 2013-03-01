@@ -1,0 +1,24 @@
+<% provide(:title, 'Sign up') %>
+
+<div class="row">
+  <div class="span6 offset3">
+    <center><%= image_tag ("signup.png") %></center>
+    <br><br>
+
+    <%= form_for(@user) do |f| %>
+    <%= render 'shared/error_messages' %>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.label :username  %> <!-- (letters, numbers, and underscore) -->
+      <%= f.text_field :username %>
+
+      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+

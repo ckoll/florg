@@ -4,7 +4,7 @@
 #
 #  id                  :integer          not null, primary key
 #  username            :string(255)
-#  pass                :string(255)
+#  password            :string(255)
 #  password_digest     :string(255)
 #  remember_token      :string(255)
 #  email               :string(255)
@@ -23,28 +23,43 @@
 #
 
 class User < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :email, :password, :username
   has_many :fanportalrelationships, :dependent => :destroy #?  #destroy relationships when user is destroyed
   has_many :portals, through: :fanportalrelationships, source: :portal
   #          :counter_cache => true #portals can be anyname, e.g., myportals
   has_many :photos
   has_many :videos
+
+  def isfan?(portal)
+    fanportalrelationships.find_by_portal_id(portal.id)
+  end
+
+  def becomefan!(other_user)
+    fanportalrelationships.create!(portal_id: portal.id)
+  end
+
+  def unfan!(other_user)
+    fanportalrelationships.find_by_portal_id(portal.id).destroy
+  end
   
   
   has_secure_password
-  
+
   before_save { |user| user.email = email.downcase }
+  before_save { |user| user.username = username.downcase }
   before_save :create_remember_token
-  
-  validates :name, presence: true, length: { maximum: 50 }
+
+  VALID_USERNAME_REGEX = /^(?:[a-z0-9]_?)*[a-z](?:_?[a-z0-9])*$/i
+  validates :username, presence: true, length: { minimum: 3, maximum: 30 }, 
+            format: { with: VALID_USERNAME_REGEX, :message => "is invalid.  Only letters, numbers, and underscore allowed"},
+            uniqueness: { case_sensitive: false }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence:   true,
                     format:     { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-  validates :password, presence: true, length: { minimum: 6 }
-  validates :password_confirmation, presence: true
+  validates :password, presence: true, length: { minimum: 6 }  
   
-  
+
   private
 
     def create_remember_token

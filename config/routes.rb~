@@ -6,22 +6,16 @@ Fanlink::Application.routes.draw do
     end
   end
 
-
   root to: 'static_pages#home'
   
   resources :static_pages
   resources :users
   resources :sessions,      only: [:new, :create, :destroy]
-  resources :fanportalrelationships
   
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
   
-  #need to move below so the below reserved words dont get detected as portals
-  match "/:slug" => "portals#show"
-
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
