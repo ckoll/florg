@@ -5,7 +5,8 @@
 			<h1><%= @portal.title %></h1>
 
 			<% if @portal[:header].blank? %>
-				<%= link_to image_tag("defaultheader.png", alt: @portal[:title]), @portal[:slug] %>
+				<%= link_to image_tag("defaultheader.png", 
+				:size=>"1000x200", alt: @portal[:title]), @portal[:slug] %>
 			<% else %>
 				<%= link_to image_tag(@portal[:header], alt: @portal[:title]), @portal[:slug] %>
 			<% end %>
@@ -18,6 +19,9 @@
 <div class="row">
 	<div class="span4">
 
+			<div><%= image_tag("/assets/portals/" + @portal[:slug] + ".png", :size=>"200x200", alt: @portal[:title]) %></div>
+
+
 <% if signed_in? %>
 <div>
 	<%= render 'hearts/heart_button', :portal => @portal %>
@@ -26,6 +30,7 @@
 <button class="btn">Become a fan</button>
 <!-- go to signup and track this page -->
 <% end %>
+
 
 
 		<div>
@@ -38,14 +43,16 @@
 		</div>
 
 
+		<div>
+			<h2>Moderators</h2>
+		</div>
+
 
 		<div>
-				<h2>Stats</h2>
+			<h2>Stats</h2>
 			<ul>
-			<li>Name:  <%= @portal.title %> </li>
+				<li>Name: <%= @portal.title %></li>
 			<li>Moderators: </li>
-			<li>Total Fans: <%= @portal.users.count %> </li>
-
 			<% @date = @portal.created_at %></li>
 			<li>Created:  <%= @date.strftime("%B #{@date.day.ordinalize}, %Y") %></li>
 			</ul>
@@ -79,6 +86,16 @@
 <% end %>
 
 
+<Br><Br>
+HOME | PAGES | GRAPHICS | PHOTOS | VIDEOS | INTERACTIVE
+home: news, latest graphics, latest photos, feed, wall
+
+		<h3>Latest Graphics</h3>
+		fanart
+gifs
+wallpaper
+icons
+other
 
 		<h3>Latest Photos</h3>
 
@@ -89,7 +106,6 @@
 		<h3>Wall</h3>
 		
 
-			
 
 
 
