@@ -1,0 +1,4 @@
+<%= form_for(current_user.fanportalrelationships.find_by_portal_id(@portal),
+             html: { method: :delete }) do |f| %>
+  <%= f.submit "Unfan", class: "btn btn-large" %>
+<% end %>

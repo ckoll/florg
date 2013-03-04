@@ -1,23 +1,27 @@
 Fanlink::Application.routes.draw do
 
-  resources :users do
-    member do
-      get :portals
-    end
-  end
-
-
   root to: 'static_pages#home'
   
   resources :static_pages
   resources :users
   resources :sessions,      only: [:new, :create, :destroy]
-  resources :fanportalrelationships
+  resources :fanportalrelationships, only: [:create, :destroy]
+  resources :portals
   
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
-  
+
+  match '/directory',  to: 'portals#index'
+  match '/directory/tv',  to: 'portals#tv'
+  match '/directory/movies',  to: 'portals#movies'
+  match '/directory/celebs',  to: 'portals#celebs'
+  match '/directory/fanfics',  to: 'portals#fanfics'
+  match '/directory/characters',  to: 'portals#characters'
+  match '/directory/books',  to: 'portals#books'
+  match '/directory/other',  to: 'portals#other'
+    
+
   #need to move below so the below reserved words dont get detected as portals
   match "/:slug" => "portals#show"
 

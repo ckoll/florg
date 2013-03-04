@@ -1,0 +1,4 @@
+module FanportalrelationshipsHelper
+
+	
+end

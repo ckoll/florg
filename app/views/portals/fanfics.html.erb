@@ -1,0 +1,32 @@
+<h3>Fanfics (total: <%= @portals_fanfics.count %>)</h3>
+	<%= render 'directory_links' %>
+
+	<div class = "center">
+		<ul class="thumbnails">
+
+		<% if @portals_fanfics.any? %>
+			<% @portals_fanfics.each do |p| %>
+			<% if !p[:slug].nil? %>
+		<li class="span2">
+			<%=	link_to image_tag("/assets/portals/" + p[:slug] + ".png", alt: p[:title], 
+					:class=>"thumbnails"), '/'+p[:slug] %>
+			<div class="caption"><%= link_to(p[:title], p.portal_slugpath) %></div>
+			<div class="caption"><%= pluralize(p.users.count, "member", "members") %></div>
+			<% if signed_in? %>
+				<% if like = current_user.fanportalrelationships.find_by_portal_id(p.id) %>
+					<%= image_tag("heart.png", alt: "You Heart this", :size=>"15x15") %> (you heart this)
+				<% end %>
+			<% end %>
+		</li>
+
+			<% else %>
+			<%=	link_to image_tag("", alt: p[:title]) + "NIL", p[:slug] %>
+			<% end %>
+			
+			<% end %>
+		<% end %>
+
+
+		</ul>
+	</div>
+

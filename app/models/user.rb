@@ -23,7 +23,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :username
+  attr_accessible :email, :password, :username, :profilepic
   has_many :fanportalrelationships, :dependent => :destroy #?  #destroy relationships when user is destroyed
   has_many :portals, through: :fanportalrelationships, source: :portal
   #          :counter_cache => true #portals can be anyname, e.g., myportals
@@ -34,11 +34,11 @@ class User < ActiveRecord::Base
     fanportalrelationships.find_by_portal_id(portal.id)
   end
 
-  def becomefan!(other_user)
+  def becomefan!(portal)
     fanportalrelationships.create!(portal_id: portal.id)
   end
 
-  def unfan!(other_user)
+  def unfan!(portal)
     fanportalrelationships.find_by_portal_id(portal.id).destroy
   end
   
@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
   validates :email, presence:   true,
                     format:     { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-  validates :password, presence: true, length: { minimum: 6 }  
+  validates :password, presence: true, length: { minimum: 5 }  
   
 
   private

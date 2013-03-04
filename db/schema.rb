@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130228223734) do
+ActiveRecord::Schema.define(:version => 20130303010348) do
 
   create_table "chapters", :force => true do |t|
     t.integer  "user_id"
@@ -173,6 +173,8 @@ ActiveRecord::Schema.define(:version => 20130228223734) do
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
     t.string   "slug"
+    t.string   "directory"
+    t.string   "popular"
   end
 
   add_index "portals", ["slug"], :name => "index_portals_on_slug", :unique => true

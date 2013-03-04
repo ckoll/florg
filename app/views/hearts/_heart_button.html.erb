@@ -1,0 +1,11 @@
+<% if like = current_user.fanportalrelationships.find_by_portal_id(@portal.id) %>
+	<%= form_for like, :html => { :method => :delete } do |f| %>
+	<%= f.submit "Unfan", :class => "btn btn-large" %>
+<% end %>
+<% else %>
+	<%= form_for current_user.fanportalrelationships.build(:portal_id => @portal.id) do |f| %>
+	<%= f.hidden_field :portal_id %>
+	<%= f.hidden_field :user_id %>
+	<%= f.submit "Become a fan", :class => "btn btn-large btn-info" %>
+<% end %>
+<% end %>

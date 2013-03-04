@@ -19,11 +19,9 @@
 	<div class="span4">
 
 <% if signed_in? %>
-
-<div id="like">
-	<%= render 'likes/like_button', :portal => @portal %>
+<div>
+	<%= render 'hearts/heart_button', :portal => @portal %>
 </div>
-
 <% else %>
 <button class="btn">Become a fan</button>
 <!-- go to signup and track this page -->
@@ -32,15 +30,21 @@
 
 		<div>
 			<h2>Fans</h2>
-			View all
+			<% for user in @portal.users.limit(20) %>
+			<%= link_to user.username, user_path(user) %>
+			<% end %>
+
+			View all (<%= @portal.users.count %>)
 		</div>
+
+
 
 		<div>
 				<h2>Stats</h2>
 			<ul>
 			<li>Name:  <%= @portal.title %> </li>
 			<li>Moderators: </li>
-			<li>Total Fans: <%= @portal.users_count %> </li>
+			<li>Total Fans: <%= @portal.users.count %> </li>
 
 			<% @date = @portal.created_at %></li>
 			<li>Created:  <%= @date.strftime("%B #{@date.day.ordinalize}, %Y") %></li>
@@ -66,6 +70,15 @@
 
 
 	<div class="span8">
+
+<% if signed_in? %>
+<button class="btn">Submit Content</button>
+<% else %>
+<button class="btn">Submit Content</button>
+<!-- don't show if not signed in -->
+<% end %>
+
+
 
 		<h3>Latest Photos</h3>
 

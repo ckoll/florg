@@ -1,0 +1,17 @@
+<% provide(:title, "New Portal") %>
+<h1>New Portal</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+
+    <%= form_for(@portal) do |f| %>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+
+      <%= f.label :slug, "slug (optional)"  %>
+      <%= f.text_field :slug %>
+
+      <%= f.submit "Create portal", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

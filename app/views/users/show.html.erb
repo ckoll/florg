@@ -1,0 +1,34 @@
+
+<div>
+
+
+<%= link_to image_tag(@user.profilepic, :size => "200x200", alt: @user.username), user_path(@user) %>
+
+
+<ul>
+<li><%= @user.username %></li>
+<li><%= @user.email %></li>
+</ul>
+
+<div>My hearts (<%= (@user.portals.count)%>)<div>
+
+<div>
+
+<% rows = @user.portals.in_groups_of(4)  %>
+<% rows.each do |row|  %>
+	<%	row.each do |p| %>
+		<% if p %>
+			<%= link_to image_tag("/assets/portals/" + p[:slug] + ".png", :size => "50x50", alt: p[:title]), p.portal_slugpath %>
+		<% end %>
+	<% end %>
+	<p>
+<% end %>
+
+
+<%= link_to "Explore Communities", "/directory" %>
+
+
+</div>
+
+
+</div>

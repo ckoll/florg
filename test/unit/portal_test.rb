@@ -11,6 +11,8 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  slug        :string(255)
+#  directory   :string(255)
+#  popular     :string(255)
 #
 
 require 'test_helper'

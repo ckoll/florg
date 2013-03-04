@@ -51,15 +51,21 @@
 <aside class="span4">
 	<ul class="nav nav-list">
 		<li class="nav-header">Directory</li>
-		<li><a href="/directory/movies">Movies (15)</a></li>
-		<li><a href="/directory/tv-shows">TV Shows (20)</a></li>
-		<li><a href="/directory/celebrities">Celebrities (50)</a></li>
-		<li><a href="/directory/fanfics">Fanfics (5)</a></li>
-		<li><a href="/directory/art">Art (5)</a></li>
-		<li><a href="/directory/for-fun">For Fun (5)</a></li>
+		<li><a href="/directory/movies">Movies (<%= @portals_movies.count %>)</a></li>
+		<li><a href="/directory/tv">TV Shows (<%= @portals_tv.count%>)</a></li>
+		<li><a href="/directory/celebs">Celebrities (<%= @portals_celebs.count%>)</a></li>
+		<li><a href="/directory/fanfics">Fanfics (<%= @portals_fanfics.count%>)</a></li>
+		<li><a href="/directory/characters">Characters (<%= @portals_characters.count%>)</a></li>
+		<li><a href="/directory/books">Books (<%= @portals_books.count%>)</a></li>
+		<li><a href="/directory/other">Other (<%= @portals_other.count%>)</a></li>
+		<li><a href="/directory">Show all (<%= @portals.count%>)</a></li>	
+		Total Members: <%= @users.count %>	
 		<li class="nav-header">Or</li>
+		<li><a href="/requests">Request a Portal</a></li>
 		<li><a href="#">Start your own!</a></li>
 	</ul>
+
+	
 </aside>
 </div>
 
@@ -70,7 +76,7 @@
 		<% if @homeportals.any? %>
 			<% @homeportals.each do |p| %>
 			<!-- %= render :partial => 'homeportals', :locals => {:p => p} % -->
-			<%= link_to image_tag(p[:slug] + ".png", alt: p[:title]), p[:slug] %>
+			<%= link_to image_tag("/assets/portals/" + p[:slug] + ".png", alt: p[:title]), p[:slug] %>
 			<% end %>
 		<% end %>
 	</div>
